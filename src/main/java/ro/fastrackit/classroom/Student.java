@@ -2,13 +2,14 @@ package ro.fastrackit.classroom;
 
 import java.time.LocalDate;
 
-public class Student {
+public class Student implements Human{
     private String lastName;
     private String firstName;
     private LocalDate dateOfBirth;
     private String emailAddress;
     private Float grade;
     private Boolean finishedClass;
+    private StudentType type;
 
     public Student(String lastName, String firstName, LocalDate dateOfBirth) {
         this.lastName = lastName;
@@ -19,18 +20,22 @@ public class Student {
     public static void main(String[] args) {
     }
 
+    @Override
     public String getLastName() {
         return lastName;
     }
 
+    @Override
     public String getFirstName() {
         return firstName;
     }
 
+    @Override
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
+    @Override
     public String getEmailAddress() {
         return emailAddress;
     }
@@ -54,4 +59,10 @@ public class Student {
     public void setFinishedClass(Boolean finishedClass) {
         this.finishedClass = finishedClass;
     }
+
+    @Override
+    public StudentType getType(){
+        return type;
+    }
+
 }
