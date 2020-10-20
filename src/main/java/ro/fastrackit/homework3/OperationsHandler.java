@@ -1,4 +1,4 @@
-package ro.fastrackit.ro.fastrackit.homework3;
+package ro.fastrackit.homework3;
 
 public class OperationsHandler {
     private int one;
