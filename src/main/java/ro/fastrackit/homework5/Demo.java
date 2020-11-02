@@ -1,6 +1,7 @@
 package ro.fastrackit.homework5;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.TreeSet;
 
@@ -8,10 +9,10 @@ public class Demo {
     public static void main(String[] args) {
 
         Assignment homework1 = new Assignment(
-                1,
+                2,
                 "Homework1",
                 "Basic IT Concepts",
-                "easy"
+                "medium"
         );
 
         Assignment homework2 = new Assignment(
@@ -25,14 +26,14 @@ public class Demo {
                 3,
                 "Homework3",
                 "Scope, Abstraction, Inheritance, Polymorphism, Operators",
-                "easy"
+                "medium"
         );
 
         Assignment homework4 = new Assignment(
-                4,
+                5,
                 "Homework4",
                 "Class types, Operators, Loops",
-                "medium"
+                "hard"
         );
 
         Assignment homework5 = new Assignment(
@@ -83,5 +84,7 @@ public class Demo {
         newCollection.put(homework4.getCourseNumber() + homework4.getDifficultyLevel(), homework4);
         newCollection.put(homework5.getCourseNumber() + homework5.getDifficultyLevel(), homework5);
 //        System.out.println(newCollection);
+
     }
+
 }
