@@ -62,7 +62,7 @@ public class Demo {
         byDifficulty.add(homework3);
         byDifficulty.add(homework4);
         byDifficulty.add(homework5);
-//        System.out.println(byDifficulty);
+        System.out.println(byDifficulty);
 
 
         //4

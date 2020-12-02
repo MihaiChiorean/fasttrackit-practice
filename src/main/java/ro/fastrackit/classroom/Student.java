@@ -65,4 +65,12 @@ public class Student implements Human{
         return type;
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                '}';
+    }
 }
