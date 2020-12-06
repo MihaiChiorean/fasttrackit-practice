@@ -23,7 +23,7 @@ public class GenericDemo {
         theList.add(first);
         theList.add(second);
         theList.add(third);
-        
+
         return theList;
     }
 }
