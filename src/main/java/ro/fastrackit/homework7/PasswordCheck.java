@@ -1,8 +1,8 @@
 package ro.fastrackit.homework7;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class PasswordCheck {
     public static void main(String[] args) {
@@ -12,33 +12,32 @@ public class PasswordCheck {
 
         password = input.nextLine();
 
-        if(validatePassword(password)) {
-            System.out.println("Password is valid");
-        } else {
+        try {
+            if(validatePassword(password)) {
+                System.out.println("Valid password");
+            };
+        } catch (InvalidPasswordException e) {
             System.out.println("Password is not valid");
         }
-
-
     }
 
-    public static boolean validatePassword(String thePassword) {
+    public static boolean validatePassword(String thePassword) throws InvalidPasswordException {
 
-        AtomicReference<Integer> count = new AtomicReference<>(0);
-        if(thePassword == null) {
-            System.out.println("Please introduce the password");
-            return false;
-        }
+        List<Validator> validators = new ArrayList<>();
+        validators.add(new CharacterValidator(12));
+        validators.add(new UppercaseValidator(1));
+        validators.add(new LowercaseValidator(11));
+        validators.add(new DigitsValidator(3));
+        validators.add(new SymbolsValidator(0));
 
-        Arrays.asList(Constraints.values())
-            .forEach(enumConstraint -> {
-                if(!enumConstraint.validate(thePassword)){
-                    count.getAndSet(count.get() + 1);
-                    System.out.println(enumConstraint.notValidMessage());
-                }
-            });
-        if(count.get() > 0) {
-            return false;
-        }
-        return true;
+        List<String>nonValidMessages = new ArrayList<>();
+        validators.forEach(validator -> {
+            if (!validator.isValid(thePassword)) {
+                System.out.println(validator.notValidMessage());
+                nonValidMessages.add(validator.notValidMessage());
+            }
+        });
+
+        return nonValidMessages.isEmpty();
     }
 }
