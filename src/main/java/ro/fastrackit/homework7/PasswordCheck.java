@@ -32,16 +32,17 @@ public class PasswordCheck {
         validatePassword(password);
     }
 
-    public static void validatePassword(String thePassword) throws InvalidPasswordException {
+    public static void validatePassword(String thePassword){
         List<String> nonValidMessages = new ArrayList<>();
         VALIDATORS.forEach(validator -> {
             if (!validator.isValid(thePassword)) {
                 nonValidMessages.add(validator.notValidMessage());
+                System.out.println(validator.notValidMessage());
             }
         });
 
         if (!nonValidMessages.isEmpty()) {
-            throw new InvalidPasswordException(String.join("", nonValidMessages));
+            System.out.println("Password is not valid");
         } else {
             System.out.println("Valid password");
             System.out.println("Password: " + thePassword);
