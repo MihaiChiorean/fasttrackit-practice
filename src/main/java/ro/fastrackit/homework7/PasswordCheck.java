@@ -5,6 +5,24 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PasswordCheck {
+
+    static CharacterValidator characterValidator = new CharacterValidator(12);
+    static UppercaseValidator uppercaseValidator = new UppercaseValidator(1);
+    static LowercaseValidator lowercaseValidator = new LowercaseValidator(1);
+    static DigitsValidator digitsValidator = new DigitsValidator(3);
+    static SymbolsValidator symbolsValidator = new SymbolsValidator(0);
+    static List<Validator> validators = new ArrayList<>();
+
+    //TODO - rename to uppercase + _/
+    static{
+        validators.add(characterValidator);
+        validators.add(uppercaseValidator);
+        validators.add(lowercaseValidator);
+        validators.add(digitsValidator);
+        validators.add(symbolsValidator);
+    }
+
+
     public static void main(String[] args) {
         String password;
 
@@ -12,32 +30,22 @@ public class PasswordCheck {
 
         password = input.nextLine();
 
-        try {
-            if(validatePassword(password)) {
-                System.out.println("Valid password");
-            };
-        } catch (InvalidPasswordException e) {
-            System.out.println("Password is not valid");
-        }
+        validatePassword(password);
     }
 
-    public static boolean validatePassword(String thePassword) throws InvalidPasswordException {
-
-        List<Validator> validators = new ArrayList<>();
-        validators.add(new CharacterValidator(12));
-        validators.add(new UppercaseValidator(1));
-        validators.add(new LowercaseValidator(11));
-        validators.add(new DigitsValidator(3));
-        validators.add(new SymbolsValidator(0));
-
-        List<String>nonValidMessages = new ArrayList<>();
+    public static void validatePassword(String thePassword) throws InvalidPasswordException {
+        List<String> nonValidMessages = new ArrayList<>();
         validators.forEach(validator -> {
             if (!validator.isValid(thePassword)) {
-                System.out.println(validator.notValidMessage());
                 nonValidMessages.add(validator.notValidMessage());
             }
         });
 
-        return nonValidMessages.isEmpty();
+        if (!nonValidMessages.isEmpty()) {
+            throw new InvalidPasswordException(String.join("", nonValidMessages));
+        } else {
+            System.out.println("Valid password");
+            System.out.println("Password: " + thePassword);
+        }
     }
 }

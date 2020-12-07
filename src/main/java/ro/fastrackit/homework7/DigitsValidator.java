@@ -20,7 +20,7 @@ public class DigitsValidator implements Validator {
             }
         }
 
-        if(count < charNumber) {
+        if(count <= charNumber) {
             return false;
         }
         return true;
