@@ -6,20 +6,19 @@ import java.util.Scanner;
 
 public class PasswordCheck {
 
-    static CharacterValidator characterValidator = new CharacterValidator(12);
-    static UppercaseValidator uppercaseValidator = new UppercaseValidator(1);
-    static LowercaseValidator lowercaseValidator = new LowercaseValidator(1);
-    static DigitsValidator digitsValidator = new DigitsValidator(3);
-    static SymbolsValidator symbolsValidator = new SymbolsValidator(0);
-    static List<Validator> validators = new ArrayList<>();
+    static CHARACTER_VALIDATOR CHARACTER_VALIDATOR = new CHARACTER_VALIDATOR(12);
+    static UPPERCASE_VALIDATOR UPPERCASE_VALIDATOR = new UPPERCASE_VALIDATOR(1);
+    static LOWERCASE_VALIDATOR LOWERCASE_VALIDATOR = new LOWERCASE_VALIDATOR(1);
+    static DIGITS_VALIDATOR DIGITS_VALIDATOR = new DIGITS_VALIDATOR(3);
+    static SYMBOLS_VALIDATOR SYMBOLS_VALIDATOR = new SYMBOLS_VALIDATOR(0);
+    static List<Validator> VALIDATORS = new ArrayList<>();
 
-    //TODO - rename to uppercase + _/
     static{
-        validators.add(characterValidator);
-        validators.add(uppercaseValidator);
-        validators.add(lowercaseValidator);
-        validators.add(digitsValidator);
-        validators.add(symbolsValidator);
+        VALIDATORS.add(CHARACTER_VALIDATOR);
+        VALIDATORS.add(UPPERCASE_VALIDATOR);
+        VALIDATORS.add(LOWERCASE_VALIDATOR);
+        VALIDATORS.add(DIGITS_VALIDATOR);
+        VALIDATORS.add(SYMBOLS_VALIDATOR);
     }
 
 
@@ -35,7 +34,7 @@ public class PasswordCheck {
 
     public static void validatePassword(String thePassword) throws InvalidPasswordException {
         List<String> nonValidMessages = new ArrayList<>();
-        validators.forEach(validator -> {
+        VALIDATORS.forEach(validator -> {
             if (!validator.isValid(thePassword)) {
                 nonValidMessages.add(validator.notValidMessage());
             }

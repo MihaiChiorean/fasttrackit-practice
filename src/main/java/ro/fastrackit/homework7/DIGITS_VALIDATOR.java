@@ -1,9 +1,9 @@
 package ro.fastrackit.homework7;
 
-public class SymbolsValidator implements Validator {
+public class DIGITS_VALIDATOR implements Validator {
     private int charNumber = 0;
 
-    public SymbolsValidator(int charNumber) {
+    public DIGITS_VALIDATOR(int charNumber) {
         this.charNumber = charNumber;
     }
 
@@ -12,18 +12,21 @@ public class SymbolsValidator implements Validator {
         Integer count = 0;
 
         for (int i = 0; i < password.length(); i++) {
-            if ((!Character.isLetterOrDigit(password.charAt(i)))) {
+            if ((Character.isDigit(password.charAt(i)) == true)) {
                 count++;
+            }
+            if(count == charNumber) {
+                return true;
             }
         }
 
         if(count <= charNumber) {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
     @Override
     public String notValidMessage() {
-        return "Password must not contains symbols\n";
+        return "Doesn't have enough digits\n";
     }
 }

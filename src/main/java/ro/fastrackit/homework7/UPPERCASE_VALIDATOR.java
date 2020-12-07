@@ -1,9 +1,9 @@
 package ro.fastrackit.homework7;
 
-public class LowercaseValidator implements Validator {
+public class UPPERCASE_VALIDATOR implements Validator {
     private int charNumber = 0;
 
-    public LowercaseValidator(int charNumber) {
+    public UPPERCASE_VALIDATOR(int charNumber) {
         this.charNumber = charNumber;
     }
 
@@ -12,7 +12,7 @@ public class LowercaseValidator implements Validator {
         Integer count = 0;
 
         for (int i = 0; i < password.length(); i++) {
-            if ((Character.isLowerCase(password.charAt(i)))) {
+            if ((Character.isUpperCase(password.charAt(i)))) {
                 count++;
             }
             if(count == charNumber) {
@@ -25,8 +25,9 @@ public class LowercaseValidator implements Validator {
         }
         return true;
     }
+
     @Override
     public String notValidMessage() {
-        return "Doesn't contain lowercase letters\n";
+        return "Doesn't contain uppercase letters\n";
     }
 }

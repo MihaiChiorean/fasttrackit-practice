@@ -1,9 +1,9 @@
 package ro.fastrackit.homework7;
 
-public class DigitsValidator implements Validator {
+public class CHARACTER_VALIDATOR implements Validator {
     private int charNumber = 0;
 
-    public DigitsValidator(int charNumber) {
+    public CHARACTER_VALIDATOR(int charNumber) {
         this.charNumber = charNumber;
     }
 
@@ -12,7 +12,7 @@ public class DigitsValidator implements Validator {
         Integer count = 0;
 
         for (int i = 0; i < password.length(); i++) {
-            if ((Character.isDigit(password.charAt(i)) == true)) {
+            if ((Character.isLetter(password.charAt(i)))) {
                 count++;
             }
             if(count == charNumber) {
@@ -25,8 +25,9 @@ public class DigitsValidator implements Validator {
         }
         return true;
     }
+
     @Override
     public String notValidMessage() {
-        return "Doesn't have enough digits\n";
+        return "Required number of characters\n";
     }
 }
